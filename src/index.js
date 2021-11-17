@@ -2,7 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { TextField95 } from './ui/darkMode/95/95_search.jsx';
+import { TextField95 } from './ui/95/95_search.jsx';
+import { ToggleDark } from './ui/darkMode/toggleDarkMode.jsx';
 function Profile(props) {
   return (
     <>
@@ -20,6 +21,8 @@ function Header(props) {
   return (
     <div className="w-2/4 grid grid-cols-2 h-auto p-4 m-5 rounded-md">
       <TextField95 />
+      <br />
+      <ToggleDark />
     </div>
   );
 }
