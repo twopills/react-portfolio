@@ -5,46 +5,43 @@ import React from 'react';
 //     document.cookie = cookie.replace(`expires=${date}`, 'expires=0');
 //     setCookie();
 // }
+function getCookie() {
+  if (document.cookie && document.cookie.includes('theme')) {
+    const value = document.cookie.split(';')[0].replace('theme=', '');
+    return value;
+  } else return false;
+}
 
+function setCookie(root) {
+  const dateExpired = new Date(new Date().getTime() + 2592000000).toUTCString();
+  // if(document.cookie && document.cookie.length){
+  //     eraseCookieAndSet(document.cookie, dateExpired);
+  // }
+  document.cookie = `theme=${root.classList.value}; expires=${dateExpired};path=/`;
+}
 export class ToggleDark extends React.Component {
-  setCookie(root) {
-    const dateExpired = new Date(new Date().getTime() + 2592000000).toUTCString();
-    // if(document.cookie && document.cookie.length){
-    //     eraseCookieAndSet(document.cookie, dateExpired);
-    // }
-    document.cookie = `theme=${root.classList.value}; expires=${dateExpired};path=/`;
-  }
-
-  getCookie = () => {
-    if (document.cookie) {
-      return document.cookie.includes('theme') ? document.cookie.split(';')[0].replace('theme=', '') : null;
-    } else return null;
-  };
-
   toggle() {
     const root = document.getElementById('root');
-    if (this.getCookie()) {
-      switch (this.getCookie()) {
-        case undefined:
-        case null:
-
+    console.log('getCookie: ', getCookie);
+    if (getCookie()) {
+      switch (getCookie()) {
         case 'dark':
           root.classList.remove('dark');
           root.classList.add('light');
-          this.setCookie(root);
+          setCookie(root);
           break;
         case 'light':
           root.classList.remove('light');
           root.classList.add('dark');
-          this.setCookie(root);
+          setCookie(root);
           break;
         default:
           root.classList.add('light');
-          this.setCookie(root);
+          setCookie(root);
           break;
       }
     } else {
-      this.setCookie(root);
+      setCookie(root);
     }
   }
 
