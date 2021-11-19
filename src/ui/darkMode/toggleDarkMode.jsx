@@ -1,6 +1,6 @@
 import { Button } from 'react95';
 import React from 'react';
-
+import { Select95 } from '../95/95_select.jsx';
 //const eraseCookieAndSet = (cookie, date) = () => {
 //     document.cookie = cookie.replace(`expires=${date}`, 'expires=0');
 //     setCookie();
@@ -52,11 +52,14 @@ export class ToggleDark extends React.Component {
 
   render() {
     return (
-      <Button square onClick={this.toggle}>
-        <span role="img" aria-label="darkMode">
-          🌙
-        </span>
-      </Button>
+      <>
+        <Select95 />
+        <Button square onClick={this.toggle}>
+          <span role="img" aria-label="darkMode">
+            🌙
+          </span>
+        </Button>
+      </>
     );
   }
 }

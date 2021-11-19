@@ -4,7 +4,30 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { TextField95 } from './ui/95/95_search.jsx';
 import { ToggleDark } from './ui/darkMode/toggleDarkMode.jsx';
-function Profile(props) {
+import { Card95 } from './ui/95/95_window.jsx';
+
+function Header() {
+  return (
+    <div className="grid grid-cols-2">
+      <div className="w-2/4 h-auto p-4 m-5 rounded-md">
+        <TextField95 />
+      </div>
+      <div className=" justify-end flex  h-auto p-4 m-5 rounded-md">
+        <ToggleDark />
+      </div>
+    </div>
+  );
+}
+
+function RightBar(props) {
+  return (
+    <div className="fixed mt-40 mx-auto">
+      <Profile />
+    </div>
+  );
+}
+
+function Profile() {
   return (
     <>
       <div className="rounded-full h-24 w-24 ml-3">
@@ -17,16 +40,6 @@ function Profile(props) {
   );
 }
 
-function Header(props) {
-  return (
-    <div className="w-2/4 grid grid-cols-2 h-auto p-4 m-5 rounded-md">
-      <TextField95 />
-      <br />
-      <ToggleDark />
-    </div>
-  );
-}
-
 function Box(props) {
   return (
     <div className="box h-72 m-4 text-center p-5 bg-red-200 rounded-md">
@@ -35,24 +48,20 @@ function Box(props) {
   );
 }
 
-function RightBar(props) {
-  return (
-    <div className="fixed mt-40 mx-auto">
-      <Profile />
-    </div>
-  );
-}
 class Body extends React.Component {
   createBox(numberOfElements) {
-    return Array(numberOfElements).fill(<Box value={''} />);
+    return Array(numberOfElements).fill(<Card95 value={''} />);
   }
 
   render() {
     return (
-      <div className="grid grid-cols-3 gap-4 h-scren">
-        <div className="col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3">{this.createBox(50)}</div>
-        <div className="col-span-1 p-5 w-auto ">
-          <RightBar />
+      <div>
+        <h5 className="px-5 text-8xl font-bebas text-gray-900">GIT REPO</h5>
+        <div className="grid grid-cols-3 gap-4 h-scren">
+          <div className="col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3">{this.createBox(5)}</div>
+          <div className="col-span-1 p-5 w-auto ">
+            <RightBar />
+          </div>
         </div>
       </div>
     );
