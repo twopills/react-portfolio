@@ -5,7 +5,7 @@ import './index.css';
 import { TextField95 } from './ui/95/95_search.jsx';
 import { ToggleDark } from './ui/darkMode/toggleDarkMode.jsx';
 import { Card95 } from './ui/95/95_window.jsx';
-
+import { boxInfo } from './config/data.js';
 function Header() {
   return (
     <div className="grid grid-cols-2">
@@ -50,7 +50,7 @@ function Box(props) {
 
 class Body extends React.Component {
   createBox(numberOfElements) {
-    return Array(numberOfElements).fill(<Card95 value={''} />);
+    return Array(numberOfElements).fill(<Card95 value={'testo di prova'} />);
   }
 
   render() {
@@ -58,7 +58,12 @@ class Body extends React.Component {
       <div>
         <h5 className="px-5 text-8xl font-bebas text-gray-900">GIT REPO</h5>
         <div className="grid grid-cols-3 gap-4 h-scren">
-          <div className="col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3">{this.createBox(5)}</div>
+          <div key="" className="col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3">
+            {boxInfo.map((box) => (
+              <Card95 value={box} />
+            ))}
+          </div>
+
           <div className="col-span-1 p-5 w-auto ">
             <RightBar />
           </div>
@@ -70,7 +75,7 @@ class Body extends React.Component {
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="bg-light dark:bg-gray-800">
+    <div className="bg-light dark:bg-gray-800" key="">
       <Header />
       <Body />
     </div>

@@ -11,30 +11,28 @@ export default {
   subcomponents: { WindowHeader, WindowContent },
 };
 
-export const Card95 = () => {
+export const Card95 = (props) => {
+  console.log(props.value);
+  const { value } = props;
   return (
     <div className="p-5">
       <ThemeProvider theme={water}>
         <Window resizable className="window">
           <WindowHeader className="window-header">
-            <span>react95.exe</span>
+            <span>{value.title}</span>
           </WindowHeader>
           <Toolbar>
-            <Button variant="menu" size="sm">
-              File
-            </Button>
-            <Button variant="menu" size="sm">
-              Edit
-            </Button>
-            <Button variant="menu" size="sm" disabled>
-              Save
-            </Button>
+            {value.buttons.map((btn) => (
+              <Button variant="menu" size="sm">
+                {btn.title}
+              </Button>
+            ))}
           </Toolbar>
           <WindowContent>
-            <p>When you set &quot;resizable&quot; prop, there will be drag handle in the bottom right corner (but resizing itself must be handled by you tho!)</p>
+            <p>{value.description}</p>
           </WindowContent>
           <Panel variant="well" className="footer">
-            Put some useful informations here
+            {value.footer}
           </Panel>
         </Window>
       </ThemeProvider>

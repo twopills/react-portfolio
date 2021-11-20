@@ -22,7 +22,6 @@ function setCookie(root) {
 export class ToggleDark extends React.Component {
   toggle() {
     const root = document.getElementById('root');
-    console.log('getCookie: ', getCookie);
     if (getCookie()) {
       switch (getCookie()) {
         case 'dark':
