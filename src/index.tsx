@@ -1,12 +1,14 @@
-// src/index.js
+// src/index.tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { TextField95 } from './ui/95/95_search.jsx';
-import { ToggleDark } from './ui/darkMode/toggleDarkMode.jsx';
-import { Card95 } from './ui/95/95_window.jsx';
-import { boxInfo } from './config/data.js';
-function Header() {
+import { TextField95 } from './ui/95/95_search';
+// @ts-ignore
+import { ToggleDark } from './ui/darkMode/toggleDarkMode.tsx';
+import { Card95 } from './ui/95/95_window';
+import { boxInfo } from './config/data';
+
+function Header(): JSX.Element {
   return (
     <div className="grid grid-cols-2">
       <div className="w-2/4 h-auto p-4 m-5 rounded-md">

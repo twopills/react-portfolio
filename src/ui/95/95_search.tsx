@@ -5,7 +5,10 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 // pick a theme of your choice
 import water from 'react95/dist/themes/water';
 // original Windows95 font (optionally)
-import ms_sans_serif from 'react95/dist/fonts/ms_sans_serif.woff2';
+
+// @ts-ignore
+import ms_sans_serif from 'react95/dist/fonts/ms_sans_serif.woff';
+// @ts-ignore
 import ms_sans_serif_bold from 'react95/dist/fonts/ms_sans_serif_bold.woff2';
 
 const onChange = (e) => console.log(e.target.value);
@@ -13,13 +16,13 @@ const onChange = (e) => console.log(e.target.value);
 const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: 'ms_sans_serif';
-    src: url('${ms_sans_serif}') format('woff2');
+    src: url(${ms_sans_serif}) format('woff2');
     font-weight: 400;
     font-style: normal
   }
   @font-face {
     font-family: 'ms_sans_serif';
-    src: url('${ms_sans_serif_bold}') format('woff2');
+    src: url(${ms_sans_serif_bold}) format('woff2');
     font-weight: bold;
     font-style: normal
   }

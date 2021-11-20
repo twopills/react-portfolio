@@ -1,6 +1,6 @@
 import { Button } from 'react95';
 import React from 'react';
-import { Select95 } from '../95/95_select.jsx';
+import { Select95 } from '../95/95_select';
 //const eraseCookieAndSet = (cookie, date) = () => {
 //     document.cookie = cookie.replace(`expires=${date}`, 'expires=0');
 //     setCookie();
@@ -25,17 +25,17 @@ export class ToggleDark extends React.Component {
     if (getCookie()) {
       switch (getCookie()) {
         case 'dark':
-          root.classList.remove('dark');
-          root.classList.add('light');
+          root?.classList.remove('dark');
+          root?.classList.add('light');
           setCookie(root);
           break;
         case 'light':
-          root.classList.remove('light');
-          root.classList.add('dark');
+          root?.classList.remove('light');
+          root?.classList.add('dark');
           setCookie(root);
           break;
         default:
-          root.classList.add('light');
+          root?.classList.add('light');
           setCookie(root);
           break;
       }
