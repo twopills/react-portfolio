@@ -75,7 +75,7 @@ class Body extends React.Component {
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="bg-light dark:bg-gray-800" key="">
+    <div className="bg-light dark:bg-gray-800 h-auto" key="">
       <Header />
       <Body />
     </div>

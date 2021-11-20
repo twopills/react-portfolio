@@ -52,7 +52,7 @@ export class ToggleDark extends React.Component {
   render() {
     return (
       <>
-        <Select95 />
+        {/* <Select95 /> */}
         <Button square onClick={this.toggle}>
           <span role="img" aria-label="darkMode">
             🌙
