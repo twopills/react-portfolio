@@ -1,5 +1,5 @@
 // src/index.tsx
-import React from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { TextField95 } from './ui/95/95_search';
@@ -7,7 +7,10 @@ import { TextField95 } from './ui/95/95_search';
 import { ToggleDark } from './ui/darkMode/toggleDarkMode.tsx';
 import { Card95 } from './ui/95/95_window';
 import { boxInfo } from './config/data';
-
+import { RepositoryService } from './service/Repository.service';
+import { Observable, pipe, Subscription, tap } from 'rxjs';
+import { IRepository } from 'config/Structure.interface';
+import Fade from 'react-reveal/Fade';
 function Header(): JSX.Element {
   return (
     <div className="grid grid-cols-2">
@@ -50,19 +53,39 @@ function Box(props) {
   );
 }
 
-class Body extends React.Component {
-  createBox(numberOfElements) {
-    return Array(numberOfElements).fill(<Card95 value={'testo di prova'} />);
+const repositoryService = new RepositoryService();
+repositoryService.setRepository = [{ name: 'deepSpace-vscodetheme' }, { name: 'e8266_crypto_gadget' }, { name: 'golang-notion-gitlab-xml' }, { name: 'ecommerce' }];
+class Body extends React.Component<any, any> {
+  subscription: Subscription | undefined;
+  constructor(props) {
+    super(props);
+    this.state = {
+      repo: [],
+    };
+  }
+
+  componentDidMount() {
+    this.subscription = repositoryService
+      .getAllRepositoryInfo()
+      .pipe(tap((data) => (data ? this.setState({ repo: data }) : this.setState({ repo: [] }))))
+      .subscribe();
+  }
+
+  componentWillUnmount() {
+    this.subscription?.unsubscribe();
   }
 
   render() {
+    const { repo } = this.state;
     return (
       <div>
         <h5 className="px-5 text-8xl font-bebas text-gray-900">GIT REPO</h5>
         <div className="grid grid-cols-3 gap-4 h-scren">
           <div key="" className="col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3">
-            {boxInfo.map((box) => (
-              <Card95 value={box} />
+            {repo.map((info) => (
+              <Fade left cascade>
+                <Card95 value={info} />
+              </Fade>
             ))}
           </div>
 

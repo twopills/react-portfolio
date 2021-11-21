@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 import { Window, WindowContent, WindowHeader, Button, Toolbar, Panel } from 'react95';
 import { ThemeProvider } from 'styled-components';
 
@@ -12,27 +10,30 @@ export default {
 };
 
 export const Card95 = (props) => {
-  console.log(props.value);
+  console.log('PROPS: ', props.value);
   const { value } = props;
   return (
     <div className="p-5">
       <ThemeProvider theme={water}>
         <Window resizable className="window">
           <WindowHeader className="window-header">
-            <span>{value.title}</span>
+            <span>{value.name}</span>
           </WindowHeader>
           <Toolbar>
-            {value.buttons.map((btn) => (
+            {value.buttons.map((name: string) => (
               <Button variant="menu" size="sm">
-                {btn.title}
+                {name}
               </Button>
             ))}
           </Toolbar>
           <WindowContent>
-            <p>{value.description}</p>
+            <p>
+              {value.description}When you set "resizable" prop, set "resizable" prop, set "resizable" prop , set "resizable" prop, set "resizable" prop, set "resizable" prop, there
+              will be drag handle in the bottom right corner
+            </p>
           </WindowContent>
           <Panel variant="well" className="footer">
-            {value.footer}
+            <p className="px-3">{value.license}</p>
           </Panel>
         </Window>
       </ThemeProvider>
