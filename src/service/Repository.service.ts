@@ -1,19 +1,18 @@
 import { IRepoSettings, IRepository } from 'config/Structure.interface';
-import { combineLatest, distinctUntilChanged, filter, map, Observable, of, tap } from 'rxjs';
+import { combineLatest, distinctUntilChanged, filter, map, Observable } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 
 export class RepositoryService {
-  constructor() {}
-  private listOfRepo: Array<Observable<any>> | Array<IRepoSettings> = [];
+  private _listRepo: Array<IRepoSettings> | Observable<IRepoSettings>[] = [];
 
   set setRepository(list: Array<IRepoSettings>) {
-    this.listOfRepo = list;
+    this._listRepo = list;
   }
-  private findRepositoryInfo(repoSettings: IRepoSettings): Observable<any> {
+
+  private findRepositoryInfo(repoSettings: IRepoSettings): Observable<IRepository> {
     return ajax.get(`https://api.github.com/repos/twopill/${repoSettings.name}`).pipe(
       filter((data) => !!data),
-      map((data: any) => {
-        const { response } = data;
+      map(({ response }: any) => {
         return {
           name: response.name ? response.name : '',
           description: response.description ? response.description : 'Default description for this Card',
@@ -24,8 +23,13 @@ export class RepositoryService {
       })
     );
   }
+
   public getAllRepositoryInfo(): Observable<Array<IRepository>> {
-    const allObservable: Observable<any>[] = this.listOfRepo.map((name: any) => (name = this.findRepositoryInfo(name)));
-    return combineLatest(allObservable).pipe(distinctUntilChanged());
+    const allObservable: Observable<IRepository>[] = this._listRepo.map((name: any) => (name = this.findRepositoryInfo(name)));
+
+    return combineLatest(allObservable).pipe(
+      filter((data) => !!data),
+      distinctUntilChanged()
+    );
   }
 }

@@ -79,9 +79,9 @@ class Body extends React.Component<any, any> {
     const { repo } = this.state;
     return (
       <div>
-        <h5 className="px-5 text-8xl font-bebas text-gray-900">GIT REPO</h5>
+        <h5 className="px-5 text-8xl font-bebas text-gray-900 dark:text-white underline">GIT REPO</h5>
         <div className="grid grid-cols-3 gap-4 h-scren">
-          <div key="" className="col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3">
+          <div key="" className="col-span-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
             {repo.map((info) => (
               <Fade left cascade>
                 <Card95 value={info} />
@@ -97,6 +97,7 @@ class Body extends React.Component<any, any> {
     );
   }
 }
+document.getElementById('root')?.classList.add('h-screen');
 
 ReactDOM.render(
   <React.StrictMode>

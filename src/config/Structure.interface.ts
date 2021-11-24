@@ -3,7 +3,7 @@ export interface IRepository {
   description: string;
   license: { name: string };
   url: string;
-  buttons?: Partial<IRepoSettings>;
+  buttons?: Array<string>;
 }
 
 export interface IRepoSettings {
