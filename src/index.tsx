@@ -10,7 +10,6 @@ import { boxInfo } from './config/data';
 import { RepositoryService } from './service/Repository.service';
 import { Observable, pipe, Subscription, tap } from 'rxjs';
 import { IRepository } from 'config/Structure.interface';
-import Fade from 'react-reveal/Fade';
 function Header(): JSX.Element {
   return (
     <div className="grid grid-cols-2">
@@ -81,11 +80,9 @@ class Body extends React.Component<any, any> {
       <div>
         <h5 className="px-5 text-8xl font-bebas text-gray-900 dark:text-white underline">GIT REPO</h5>
         <div className="grid grid-cols-3 gap-4 h-scren">
-          <div key="" className="col-span-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-            {repo.map((info) => (
-              <Fade left cascade>
-                <Card95 value={info} />
-              </Fade>
+          <div className="col-span-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+            {repo.map((info, index) => (
+              <Card95 key={index} value={info} />
             ))}
           </div>
 
@@ -101,7 +98,7 @@ document.getElementById('root')?.classList.add('h-screen');
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="bg-light dark:bg-gray-800 h-auto" key="">
+    <div className="bg-light dark:bg-gray-800 h-auto" key="1">
       <Header />
       <Body />
     </div>

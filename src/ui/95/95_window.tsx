@@ -10,7 +10,7 @@ export default {
 };
 
 export const Card95 = (props) => {
-  console.log('PROPS: ', props.value);
+  // console.log('PROPS: ', props.value);
   const { value } = props;
   return (
     <div className="p-5">
@@ -20,8 +20,8 @@ export const Card95 = (props) => {
             <span>{value.name}</span>
           </WindowHeader>
           <Toolbar>
-            {value.buttons.map((name: string) => (
-              <Button variant="menu" size="sm">
+            {value.buttons.map((name: string, index: number) => (
+              <Button variant="menu" size="sm" key={index}>
                 {name}
               </Button>
             ))}
