@@ -1,6 +1,7 @@
 import { Button } from 'react95';
 import React from 'react';
 import { ToggleService } from '../../service/ToggleService.service';
+import { getCookies } from 'utils/CookieManager';
 enum EMod {
   NOT_SET,
   LIGHT,
@@ -19,19 +20,18 @@ function getCookie() {
 }
 
 export class ToggleDark extends React.Component {
-  private _toggleService: ToggleService = new ToggleService();
   constructor(props) {
     super(props);
     this.toggle();
   }
   toggle() {
     const root = document.getElementById('root');
-    switch (getCookie()) {
+    switch (getCookies()) {
       case 1:
         root?.classList.remove('light');
         root?.classList.add('dark');
         setCookie('dark');
-        this._toggleService?.updateState({ icon: 'dark', toggle: true });
+        ToggleService?.updateState({ icon: 'dark', toggle: true });
         break;
       case 2:
         root?.classList.remove('dark');

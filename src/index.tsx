@@ -6,7 +6,6 @@ import { TextField95 } from './ui/95/95_search';
 // @ts-ignore
 import { ToggleDark } from './ui/darkMode/toggleDarkMode.tsx';
 import { Card95 } from './ui/95/95_window';
-import { boxInfo } from './config/data';
 import { RepositoryService } from './service/Repository.service';
 import { Observable, pipe, Subscription, tap } from 'rxjs';
 import { IRepository } from 'config/Structure.interface';
@@ -35,7 +34,7 @@ function Profile() {
   return (
     <>
       <div className="rounded-full h-24 w-24 ml-3">
-        <img className="object-contain rounded-full h-24 w-24" alt="profile pic" src="https://avatars.githubusercontent.com/u/58731523?v=4" />
+        <img className="object-contain rounded-full h-24 w-24" width="6rem" height="6rem" alt="profile pic" src="https://avatars.githubusercontent.com/u/58731523?v=4" />
       </div>
       <div className="mt-5 dark:text-white font-bebas tracking-wider px-3 text-gray-900">WRITTEN BY</div>
       <div className="my-1 dark:text-red-100 font-bebas tracking-wider px-3 text-red-400">ELIA</div>
@@ -98,7 +97,7 @@ document.getElementById('root')?.classList.add('h-screen');
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="bg-light dark:bg-gray-800 h-auto" key="1">
+    <div className="transition duration-500 ease-in-out bg-light dark:bg-gray-800 h-auto" key="1">
       <Header />
       <Body />
     </div>
