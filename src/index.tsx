@@ -78,14 +78,14 @@ class Body extends React.Component<any, any> {
     return (
       <div>
         <h5 className="px-5 text-8xl font-bebas text-gray-900 dark:text-white underline">GIT REPO</h5>
-        <div className="grid grid-cols-3 gap-4 h-scren">
-          <div className="col-span-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-3 gap-4 h-screen">
+          <div className="col-span-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-h-1">
             {repo.map((info, index) => (
               <Card95 key={index} value={info} />
             ))}
           </div>
 
-          <div className="col-span-1 p-5 w-auto ">
+          <div className="col-span-1 p-5 w-auto sm:hidden">
             <RightBar />
           </div>
         </div>

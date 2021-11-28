@@ -19,9 +19,9 @@ export class Card95 extends React.Component<any, any> {
     super(props);
   }
   componentDidMount() {
-    this._uiFacade.vm$.subscribe((value) => {
-      console.log('ECCOCI: ', value);
-    });
+    // this._uiFacade.vm$.subscribe((value) => {
+    //   console.log('ECCOCI: ', value);
+    // });
   }
   componentWillUnmount() {
     //this._uiFacade.vm$.;

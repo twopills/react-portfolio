@@ -11,7 +11,7 @@ class UIFacade {
     distinctUntilChanged()
   );
 
-  vm$ = combineLatest([this._state$]).pipe(tap(([state]) => console.log('VM state: ', state)));
+  vm$ = combineLatest([this._state$]).pipe(tap(([state]) => console.log('VM state: ', JSON.stringify(state))));
 
   updateState(state) {
     this._store$.next({ state, ...this._initState });
