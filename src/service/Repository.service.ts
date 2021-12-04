@@ -13,12 +13,15 @@ export class RepositoryService {
     return ajax.get(`https://api.github.com/repos/twopill/${repoSettings.name}`).pipe(
       filter((data) => !!data),
       map(({ response }: any) => {
+        console.log('REPONSE:', response);
         return {
-          name: response.name ? response.name : '',
-          description: response.description ? response.description : 'Default description for this Card',
-          license: response.license?.name ? response.license?.name : 'No license',
-          url: response.clone_url ? response.clone_url : '',
-          buttons: repoSettings.buttons ? repoSettings.buttons : ['File', 'Edit', 'Save'],
+          name: response?.name ? response.name : '',
+          description: response?.description ? response.description : 'Default description for this Card',
+          license: response?.license?.name ? response.license?.name : 'No license',
+          url: response?.clone_url ? response.clone_url : '',
+          buttons: repoSettings?.buttons ? repoSettings.buttons : ['File', 'Edit', 'Save'],
+          style: response.style, //'linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%)',
+          language: response.language,
         };
       })
     );

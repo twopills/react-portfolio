@@ -4,6 +4,8 @@ export interface IRepository {
   license: { name: string };
   url: string;
   buttons?: Array<string>;
+  style?: string;
+  language?: string;
 }
 
 export interface IRepoSettings {
