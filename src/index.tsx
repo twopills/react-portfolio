@@ -1,17 +1,20 @@
 // src/index.tsx
-import React, { Component, useEffect, useState } from 'react';
+import React from 'react'; // { Component, ReactElement, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import { TextField95 } from './ui/95/95_search';
+import './index.scss';
+//import { TextField95 } from './ui/95/95_search';
 // @ts-ignore
 import { ToggleDark } from './ui/darkMode/toggleDarkMode.tsx';
-import { Card95 } from './ui/95/95_window';
+//import { Card95 } from './ui/95/95_window';
 import { RepositoryService } from './service/Repository.service';
-import { map, Observable, pipe, Subscription, tap } from 'rxjs';
-import { IRepository } from 'config/Structure.interface';
+import { map, Subscription, tap } from 'rxjs';
+// import { IRepository } from 'config/Structure.interface';
+// import { Test } from './ui/testAnimation/effect_1';
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+import { Home } from './ui/pages/home';
 function Header(): JSX.Element {
   return (
-    <div className="grid grid-cols-2">
+    <div className="absolute grid grid-cols-2">
       <div className="w-2/4 h-auto p-4 m-5 rounded-md">{/* <TextField95 /> */}</div>
       <div className=" justify-end flex  h-auto p-4 m-5 rounded-md">
         <ToggleDark />
@@ -41,22 +44,22 @@ function Profile() {
   );
 }
 
-function Box(props) {
-  return (
-    <div className="box h-72 m-4 text-center p-5 bg-red-200 rounded-md">
-      <h4 className="">{props.value}</h4>
-    </div>
-  );
-}
-
 const repositoryService = new RepositoryService();
-repositoryService.setRepository = [{ name: 'deepSpace-vscodetheme' }, { name: 'e8266_crypto_gadget' }, { name: 'golang-notion-gitlab-xml' }, { name: 'ecommerce' }];
-class Body extends React.Component<any, any> {
+repositoryService.setRepository = [
+  { name: 'deepSpace-vscodetheme' },
+  { name: 'e8266_crypto_gadget' },
+  { name: 'golang-notion-gitlab-xml' },
+  { name: 'ecommerce' },
+  { name: 'go_api_postgreSQL' },
+];
+
+class CurrentWorks extends React.Component<any, any> {
   subscription: Subscription | undefined;
   constructor(props) {
     super(props);
     this.state = {
       repo: [],
+      isHover: false,
     };
   }
 
@@ -65,6 +68,7 @@ class Body extends React.Component<any, any> {
     'linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)',
     'linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%)',
     'linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)',
+    'linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)',
   ];
 
   componentDidMount() {
@@ -87,53 +91,78 @@ class Body extends React.Component<any, any> {
     this.subscription?.unsubscribe();
   }
 
+  setBackgroundImageText(event: any, property: string) {
+    event.target.style.backgroundImage = property;
+  }
+
+  takeData(props) {
+    // console.log('PROPS HOVER: ', props);
+  }
+
   render() {
     const { repo } = this.state;
     return (
-      <div className="__other-page">
-        <h5 className="px-5 text-8xl font-bebas text-gray-900 dark:text-white underline">GIT REPO</h5>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-4 h-screen">
-          <div className="col-span-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-h-1">
+      <div className="__other-page dark:bg-gray-800">
+        <h5 className="px-20 pt-3 text-8xl font-bebas text-gray-900 dark:text-white underline">CURRENT WORKS</h5>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-4 h-auto">
+          <div className="col-span-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-h-1">
             {repo.map((info, index) => (
-              // <Card95 key={index} value={info} />
-              <div className="__box m-10 rounded-md grid grid-rows-3 " style={{ backgroundImage: info.style }}>
-                <div className="font-bebas text-gray-900 px-5 py-5 flex justify-end items-start ">
-                  <div className="">
-                    <img src="https://img.icons8.com/material-outlined/24/000000/github.png" />
+              <div
+                className="__box m-12 rounded-md grid grid-rows-3 cursor-pointer"
+                onMouseLeave={() => {
+                  this.setState({ isHover: false });
+                }}
+                onMouseOver={() => {
+                  this.setState({ isHover: true });
+                  this.takeData(info);
+                }}
+                style={{ backgroundImage: info.style }}
+              >
+                <>
+                  <div className="font-bebas text-gray-900 px-5 py-5 flex justify-end items-start ">
+                    <div className="">
+                      <img alt="github icon" src="https://img.icons8.com/material-outlined/24/000000/github.png" />
+                    </div>
                   </div>
-                  <div className="pl-3">
-                    <img src="https://img.icons8.com/material-outlined/24/000000/external-link.png" />
-                  </div>
-                </div>
-                <div className="font-bebas text-gray-900 flex justify-center items-end text-3xl">{info?.name}</div>
-                <div className="font-bebas text-gray-900 font-bold flex justify-center px-5 items-center text-xl">{info?.language}</div>
+                  <div className="font-bebas text-gray-900 flex justify-center items-end text-2xl">{info?.name}</div>
+                  <div className="font-bebas tracking-widest text-gray-900 font-semibold flex justify-center px-5 items-center text-xl">{info?.language}</div>
+                </>
               </div>
             ))}
           </div>
-          <div className="col-span-1 p-5 w-auto">
+          {/* <div className="col-span-1 p-5 w-auto">
             <RightBar />
-          </div>
+          </div> */}
         </div>
       </div>
     );
   }
 }
 document.getElementById('root')?.classList.add('h-screen');
+document.getElementById('root')?.classList.add('w-screen');
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="transition duration-500 ease-in-out bg-light dark:bg-gray-800 " key="1">
-      {/* <Header /> */}
-      <section className="__container">
-        <Body />
-        <div className="__other-page h-52 bg-red-100">
-          <h2>TERZA PAGINA</h2>
-        </div>
-        <div className="__other-page h-screen bg-yellow-600 flex justify-center">
-          <h1>CIAO SECONDA PAGINA</h1>
-        </div>
-      </section>
+    {/* <div className="transition duration-500 ease-in-out bg-light dark:bg-gray-800 " key="1"> */}
+    <Header />
+    {/* <Parallax pages={4} className="h-screen max-h-screen overflow-y-scroll snap-type-y-mandatory"> */}
+    <div className="h-screen max-h-screen overflow-y-scroll snap-type-y-mandatory overflow-x-hidden">
+      {/* <ParallaxLayer offset={0} speed={0.5}> */}
+      <div className="scroll-snap-align-start">
+        <Home key={1} />
+      </div>
+      {/* <ParallaxLayer className="scroll-snap-align-start" offset={0.95} speed={0.5}> */}
+      <div>
+        {<CurrentWorks key={1} />}
+        {/* <div className="__other-page"></div> */}
+      </div>
+      {/* <ParallaxLayer className="scroll-snap-align-start" offset={1.4} speed={1} style={{ backgroundColor: '#ff6d6d', height: '100vh', width: '100vw' }}> */}
+      {/* <div className="" style={{ backgroundColor: '#ff6d6d', height: '100vh', width: '100vw' }}>
+        <p className="text-3xl">Scroll up</p>
+      </div> */}
     </div>
+
+    {/* <Test></Test> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

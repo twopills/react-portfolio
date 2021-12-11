@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.0",
+    "@react-spring/parallax": "^9.3.1",
+    "@react-spring/web": "^9.3.1",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -14,6 +16,7 @@
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-scripts": "4.0.3",
+    "react-spring": "^9.3.2",
     "react95": "^3.8.0",
     "rxjs": "^7.4.0",
     "styled-components": "^5.3.3",
@@ -50,6 +53,7 @@
   "devDependencies": {
     "autoprefixer": "^9.8.8",
     "postcss": "^7.0.39",
+    "sass": "^1.44.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }

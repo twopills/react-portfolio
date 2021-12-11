@@ -5,6 +5,26 @@ module.exports = {
     extend: {},
     fontFamily: {
       bebas: ['Bebas Neue', 'cursive'],
+      lato: ['Lato'],
+    },
+    fontSize: {
+      xs: '.75rem',
+      sm: '.875rem',
+      tiny: '.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.25rem',
+      '2xl': '1.5rem',
+      '3xl': '1.875rem',
+      '4xl': '2.25rem',
+      '5xl': '3rem',
+      '6xl': '4rem',
+      '7xl': '5rem',
+      '8xl': '8rem',
+      '9xl': '9rem',
+      '10xl': '10rem',
+      '12xl': '12rem',
+      '16xl': '16rem',
     },
     screen: {
       sm: { min: '576px' },
@@ -14,7 +34,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundImage: ['hover'],
+    },
   },
   plugins: [],
 };

@@ -3,7 +3,6 @@ import { ThemeProvider } from 'styled-components';
 
 import water from 'react95/dist/themes/water';
 import matrix from 'react95/dist/themes/matrix';
-import UIFacade from 'store/UIFacade.store';
 import React from 'react';
 import { Observable } from 'rxjs';
 
@@ -14,18 +13,10 @@ export default {
 };
 
 export class Card95 extends React.Component<any, any> {
-  private _uiFacade = new UIFacade();
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    // this._uiFacade.vm$.subscribe((value) => {
-    //   console.log('ECCOCI: ', value);
-    // });
-  }
-  componentWillUnmount() {
-    //this._uiFacade.vm$.;
-  }
+
   render() {
     const { value } = this.props;
     return (

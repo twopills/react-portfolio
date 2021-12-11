@@ -3,7 +3,7 @@ enum EMod {
   LIGHT,
   DARK,
 }
-
+// eslint-disable-next-line
 export function getCookies(): number {
   if (document.cookie && document.cookie.includes('theme')) {
     const value = document.cookie.split(';')[0].replace('theme=', '');

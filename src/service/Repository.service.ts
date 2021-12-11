@@ -20,8 +20,8 @@ export class RepositoryService {
           license: response?.license?.name ? response.license?.name : 'No license',
           url: response?.clone_url ? response.clone_url : '',
           buttons: repoSettings?.buttons ? repoSettings.buttons : ['File', 'Edit', 'Save'],
-          style: response.style, //'linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%)',
-          language: response.language,
+          style: response.style,
+          language: response.language ? response.language : 'json',
         };
       })
     );
