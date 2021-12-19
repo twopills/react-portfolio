@@ -1,21 +1,16 @@
-// src/index.tsx
-import React from 'react'; // { Component, ReactElement, useEffect, useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-//import { TextField95 } from './ui/95/95_search';
 // @ts-ignore
 import { ToggleDark } from './ui/darkMode/toggleDarkMode.tsx';
-//import { Card95 } from './ui/95/95_window';
 import { RepositoryService } from './service/Repository.service';
 import { map, Subscription, tap } from 'rxjs';
-// import { IRepository } from 'config/Structure.interface';
-// import { Test } from './ui/testAnimation/effect_1';
-import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { Home } from './ui/pages/home';
+import { IRepository } from 'config/Structure.interface';
 function Header(): JSX.Element {
   return (
     <div className="absolute grid grid-cols-2">
-      <div className="w-2/4 h-auto p-4 m-5 rounded-md">{/* <TextField95 /> */}</div>
+      <div className="w-2/4 h-auto p-4 m-5 rounded-md"></div>
       <div className=" justify-end flex  h-auto p-4 m-5 rounded-md">
         <ToggleDark />
       </div>
@@ -23,29 +18,8 @@ function Header(): JSX.Element {
   );
 }
 
-function RightBar(props) {
-  return (
-    <div className="xl:fixed md:fixed sm:relative mt-40 mx-auto">
-      <Profile />
-    </div>
-  );
-}
-
-function Profile() {
-  return (
-    <>
-      <div className="rounded-full h-24 w-24 ml-3">
-        <img className="object-contain rounded-full h-24 w-24" width="6rem" height="6rem" alt="profile pic" src="https://avatars.githubusercontent.com/u/58731523?v=4" />
-      </div>
-      <div className="mt-5 dark:text-white font-bebas tracking-wider px-3 text-gray-900">WRITTEN BY</div>
-      <div className="my-1 dark:text-red-100 font-bebas tracking-wider px-3 text-red-400">ELIA</div>
-      <div className="my-1 dark:text-white w-2/3 font-bebas tracking-wider px-3 text-gray-900">Hello! I made this site because a web developer must have one!</div>
-    </>
-  );
-}
-
-const repositoryService = new RepositoryService();
-repositoryService.setRepository = [
+// const repositoryService = new RepositoryService();
+RepositoryService.setRepository = [
   { name: 'deepSpace-vscodetheme' },
   { name: 'e8266_crypto_gadget' },
   { name: 'golang-notion-gitlab-xml' },
@@ -72,8 +46,7 @@ class CurrentWorks extends React.Component<any, any> {
   ];
 
   componentDidMount() {
-    this.subscription = repositoryService
-      .getAllRepositoryInfo()
+    this.subscription = RepositoryService.getAllRepositoryInfo()
       .pipe(
         map((data) => {
           data.map((data, index) => {
@@ -95,44 +68,49 @@ class CurrentWorks extends React.Component<any, any> {
     event.target.style.backgroundImage = property;
   }
 
-  takeData(props) {
-    // console.log('PROPS HOVER: ', props);
-  }
-
   render() {
     const { repo } = this.state;
     return (
-      <div className="__other-page dark:bg-gray-800">
-        <h5 className="px-20 pt-3 text-8xl font-bebas text-gray-900 dark:text-white underline">CURRENT WORKS</h5>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-4 h-auto">
-          <div className="col-span-2 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-h-1">
-            {repo.map((info, index) => (
-              <div
-                className="__box m-12 rounded-md grid grid-rows-3 cursor-pointer"
-                onMouseLeave={() => {
-                  this.setState({ isHover: false });
-                }}
-                onMouseOver={() => {
-                  this.setState({ isHover: true });
-                  this.takeData(info);
-                }}
-                style={{ backgroundImage: info.style }}
-              >
-                <>
-                  <div className="font-bebas text-gray-900 px-5 py-5 flex justify-end items-start ">
-                    <div className="">
-                      <img alt="github icon" src="https://img.icons8.com/material-outlined/24/000000/github.png" />
+      <div className="bg-gray-800 pt-20">
+        <div className="grid grid-cols-6 h-auto px-24">
+          <div className="col-span-2 border-white h-96 mt-48 sticky top-0 ">
+            <div className="grid grid-rows-2 text-lato">
+              <div className="text-7-exl  text-sabbia leading-none">Current works</div>
+              <div className=" text-2xl text-sabbia font-light">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. <span className="text-red-400 font-bold">Dolores incidunt</span> illo earum cumque, praesentium, illum,
+                error molestiae sunt quasi et quos adipisci. Est ratione esse quas <span className="text-red-400 font-bold">perspiciatis</span> delectus eveniet nulla.
+              </div>
+            </div>
+          </div>
+          <div className="col-span-4 flex justify-center">
+            <div className={`inline-grid grid-cols-2 grid-rows-${Math.round(repo.length / 2)}`}>
+              {repo.map((info: IRepository, index) => (
+                <div className="p-5" key={index}>
+                  <div className={`font-lato p-12 grid grid-rows-3 bg-gray-700 rounded-md w-30 h-30 text-sabbia ${index % 2 !== 0 ? 'mt-10' : ''}`}>
+                    <div className="flex w-full h-full">
+                      <div className="text-3xl font-medium">{info?.language}</div>
+                    </div>
+                    <div className="flex w-full h-full mt-3">
+                      <div className="text-xl font-light">{info?.createAt}</div>
+                    </div>
+                    <div className="flex w-full h-full row-span-4 mt-3">
+                      <div className="text-xl font-light">{info?.license}</div>
+                    </div>
+                    <div className="flex w-full h-full row-end-auto">
+                      <div className="text-5xl break-words capitalize font-black">{info?.name}</div>
+                    </div>
+                    <div className="flex w-full h-full mt-5 row-end-auto">
+                      <div className="text-lg font-thin" onClick={() => window.open(info?.url)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" className="fill-current text-white cursor-pointer">
+                          <path d="M 5 3 C 3.9069372 3 3 3.9069372 3 5 L 3 19 C 3 20.093063 3.9069372 21 5 21 L 19 21 C 20.093063 21 21 20.093063 21 19 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 5 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"></path>
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                  <div className="font-bebas text-gray-900 flex justify-center items-end text-2xl">{info?.name}</div>
-                  <div className="font-bebas tracking-widest text-gray-900 font-semibold flex justify-center px-5 items-center text-xl">{info?.language}</div>
-                </>
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
-          {/* <div className="col-span-1 p-5 w-auto">
-            <RightBar />
-          </div> */}
         </div>
       </div>
     );
@@ -143,26 +121,15 @@ document.getElementById('root')?.classList.add('w-screen');
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <div className="transition duration-500 ease-in-out bg-light dark:bg-gray-800 " key="1"> */}
-    <Header />
-    {/* <Parallax pages={4} className="h-screen max-h-screen overflow-y-scroll snap-type-y-mandatory"> */}
-    <div className="h-screen max-h-screen overflow-y-scroll snap-type-y-mandatory overflow-x-hidden">
-      {/* <ParallaxLayer offset={0} speed={0.5}> */}
-      <div className="scroll-snap-align-start">
-        <Home key={1} />
+    <div className="transition duration-500 ease-in-out " key="1">
+      <Header />
+      <div className="h-screen max-h-screen overflow-y-scroll snap-type-y-mandatory overflow-x-hidden">
+        <div className="scroll-snap-">
+          <Home key={1} />
+        </div>
+        <div>{<CurrentWorks />}</div>
       </div>
-      {/* <ParallaxLayer className="scroll-snap-align-start" offset={0.95} speed={0.5}> */}
-      <div>
-        {<CurrentWorks key={1} />}
-        {/* <div className="__other-page"></div> */}
-      </div>
-      {/* <ParallaxLayer className="scroll-snap-align-start" offset={1.4} speed={1} style={{ backgroundColor: '#ff6d6d', height: '100vh', width: '100vw' }}> */}
-      {/* <div className="" style={{ backgroundColor: '#ff6d6d', height: '100vh', width: '100vw' }}>
-        <p className="text-3xl">Scroll up</p>
-      </div> */}
     </div>
-
-    {/* <Test></Test> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -6,6 +6,7 @@ export interface IRepository {
   buttons?: Array<string>;
   style?: string;
   language?: string;
+  createAt?: string;
 }
 
 export interface IRepoSettings {
