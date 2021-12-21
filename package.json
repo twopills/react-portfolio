@@ -13,6 +13,7 @@
     "@types/node": "^16.11.9",
     "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.11",
+    "@vitejs/plugin-react": "^1.1.3",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-scripts": "4.0.3",
@@ -21,13 +22,14 @@
     "rxjs": "^7.4.0",
     "styled-components": "^5.3.3",
     "typescript": "^4.5.2",
+    "vite": "^2.7.5",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "c-start": "export SET NODE_OPTIONS=--openssl-legacy-provider && craco start",
+    "c-start": "export SET NODE_OPTIONS=--openssl-legacy-provider && craco start && vite",
     "c-build": "craco build",
     "c-test": "craco test",
     "eject": "react-scripts eject"

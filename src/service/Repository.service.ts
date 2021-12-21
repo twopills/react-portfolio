@@ -10,7 +10,7 @@ class _RepositoryService {
   }
 
   private replaceUnderscoreWithEmpty(value: string): string {
-    return value.replaceAll('_', ' ');
+    return value.includes('_') ? value.replaceAll('_', ' ') : value.replaceAll('-', ' ');
   }
 
   private convertDate(date: Date): string {

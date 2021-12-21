@@ -20,6 +20,7 @@ function Header(): JSX.Element {
 
 // const repositoryService = new RepositoryService();
 RepositoryService.setRepository = [
+  { name: 'No-Reddit-Announcements' },
   { name: 'deepSpace-vscodetheme' },
   { name: 'e8266_crypto_gadget' },
   { name: 'golang-notion-gitlab-xml' },
