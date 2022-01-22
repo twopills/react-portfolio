@@ -21,10 +21,11 @@ function Header(): JSX.Element {
 // const repositoryService = new RepositoryService();
 RepositoryService.setRepository = [
   { name: 'Kindle-RSS-PDF-AZW3' },
-  { name: 'No-Reddit-Announcements' },
   { name: 'Kindle-Api-AMZ' },
   { name: 'react-portfolio' },
+  { name: 'No-Reddit-Announcements' },
   { name: 'deepSpace_vscodetheme' },
+  { name: 'e8266_crypto_gadget' },
   { name: 'go_api_postgreSQL' },
 ];
 
@@ -125,9 +126,9 @@ ReactDOM.render(
     <div className="transition duration-500 ease-in-out " key="1">
       <Header />
       <div className="h-screen max-h-screen overflow-y-scroll snap-type-y-mandatory overflow-x-hidden">
-        {/* <div className="scroll-snap-">
+        <div className="scroll-snap-">
           <Home key={1} />
-        </div> */}
+        </div>
         <div>{<CurrentWorks />}</div>
       </div>
     </div>
