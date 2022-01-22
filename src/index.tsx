@@ -20,11 +20,11 @@ function Header(): JSX.Element {
 
 // const repositoryService = new RepositoryService();
 RepositoryService.setRepository = [
+  { name: 'Kindle-RSS-PDF-AZW3' },
   { name: 'No-Reddit-Announcements' },
-  { name: 'deepSpace-vscodetheme' },
-  { name: 'e8266_crypto_gadget' },
-  { name: 'golang-notion-gitlab-xml' },
-  { name: 'ecommerce' },
+  { name: 'Kindle-Api-AMZ' },
+  { name: 'react-portfolio' },
+  { name: 'deepSpace_vscodetheme' },
   { name: 'go_api_postgreSQL' },
 ];
 
@@ -87,7 +87,7 @@ class CurrentWorks extends React.Component<any, any> {
             <div className={`inline-grid grid-cols-2 grid-rows-${Math.round(repo.length / 2)}`}>
               {repo.map((info: IRepository, index) => (
                 <div className="p-5" key={index}>
-                  <div className={`font-lato p-12 grid grid-rows-3 bg-gray-700 rounded-md w-30 h-30 text-sabbia ${index % 2 !== 0 ? 'mt-10' : ''}`}>
+                  <div className={`font-lato p-12 grid grid-rows-3 bg-gray-700 rounded-md text-sabbia ${index % 2 !== 0 ? 'mt-10' : ''}`}>
                     <div className="flex w-full h-full">
                       <div className="text-3xl font-medium">{info?.language}</div>
                     </div>
@@ -98,7 +98,7 @@ class CurrentWorks extends React.Component<any, any> {
                       <div className="text-xl font-light">{info?.license}</div>
                     </div>
                     <div className="flex w-full h-full row-end-auto">
-                      <div className="text-5xl break-words capitalize font-black">{info?.name}</div>
+                      <div className="text-3xl break-words capitalize font-black">{info?.name}</div>
                     </div>
                     <div className="flex w-full h-full mt-5 row-end-auto">
                       <div className="text-lg font-thin" onClick={() => window.open(info?.url)}>
@@ -125,9 +125,9 @@ ReactDOM.render(
     <div className="transition duration-500 ease-in-out " key="1">
       <Header />
       <div className="h-screen max-h-screen overflow-y-scroll snap-type-y-mandatory overflow-x-hidden">
-        <div className="scroll-snap-">
+        {/* <div className="scroll-snap-">
           <Home key={1} />
-        </div>
+        </div> */}
         <div>{<CurrentWorks />}</div>
       </div>
     </div>

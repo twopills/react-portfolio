@@ -30,6 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "c-start": "export SET NODE_OPTIONS=--openssl-legacy-provider && craco start && vite",
+    "c-start2": "craco start && vite",
     "c-build": "craco build",
     "c-test": "craco test",
     "eject": "react-scripts eject"

@@ -19,7 +19,7 @@ class _RepositoryService {
   }
 
   private findRepositoryInfo(repoSettings: IRepoSettings): Observable<IRepository> {
-    return ajax.get(`https://api.github.com/repos/twopill/${repoSettings.name}`).pipe(
+    return ajax.get(`https://api.github.com/repos/twopills/${repoSettings.name}`).pipe(
       filter((data) => !!data),
       map(({ response }: any) => {
         console.log('REPONSE:', response);
