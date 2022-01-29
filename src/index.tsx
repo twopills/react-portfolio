@@ -20,9 +20,9 @@ function Header(): JSX.Element {
 
 // const repositoryService = new RepositoryService();
 RepositoryService.setRepository = [
+  { name: 'react-portfolio' },
   { name: 'Kindle-RSS-PDF-AZW3' },
   { name: 'Kindle-Api-AMZ' },
-  { name: 'react-portfolio' },
   { name: 'No-Reddit-Announcements' },
   { name: 'deepSpace_vscodetheme' },
   { name: 'e8266_crypto_gadget' },
@@ -74,23 +74,23 @@ class CurrentWorks extends React.Component<any, any> {
     const { repo } = this.state;
     return (
       <div className="bg-gray-800 pt-20">
-        <div className="grid grid-cols-6 h-auto px-24">
-          <div className="col-span-2 border-white h-96 mt-48 sticky top-0 ">
-            <div className="grid grid-rows-2 text-lato">
-              <div className="text-7-exl  text-sabbia leading-none">Current works</div>
-              <div className=" text-2xl text-sabbia font-light">
+        <div className="grid grid-cols-6 h-auto px-80">
+          <div className="col-span-6 border-white sticky top-0 ">
+            <div className="grid grid-rows-1 text-lato">
+              <div className="text-6xl __blur-effect p-2  text-sabbia leading-none">Projects</div>
+              {/* <div className=" text-2xl text-sabbia font-light __blur-effect">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. <span className="text-red-400 font-bold">Dolores incidunt</span> illo earum cumque, praesentium, illum,
                 error molestiae sunt quasi et quos adipisci. Est ratione esse quas <span className="text-red-400 font-bold">perspiciatis</span> delectus eveniet nulla.
-              </div>
+              </div> */}
             </div>
           </div>
-          <div className="col-span-4 flex justify-center">
-            <div className={`inline-grid grid-cols-2 grid-rows-${Math.round(repo.length / 2)}`}>
+          <div className="col-span-6 flex justify-center">
+            <div className={`inline-grid md:grid-cols-1 lg:grid-cols-2 md:grid-rows-none lg:grid-rows-${Math.round(repo.length / 2)}`}>
               {repo.map((info: IRepository, index) => (
                 <div className="p-5" key={index}>
-                  <div className={`font-lato p-12 grid grid-rows-3 bg-gray-700 rounded-md text-sabbia ${index % 2 !== 0 ? 'mt-10' : ''}`}>
+                  <div className={`font-lato p-12 grid  bg-gray-700 rounded-md h-full text-sabbia md:mt-10 ${index % 2 !== 0 ? 'lg:mt-10' : ''}`}>
                     <div className="flex w-full h-full">
-                      <div className="text-3xl font-medium">{info?.language}</div>
+                      <div className="text-3xl font-medium text-red-400">{info?.language}</div>
                     </div>
                     <div className="flex w-full h-full mt-3">
                       <div className="text-xl font-light">{info?.createAt}</div>
@@ -102,8 +102,8 @@ class CurrentWorks extends React.Component<any, any> {
                       <div className="text-3xl break-words capitalize font-black">{info?.name}</div>
                     </div>
                     <div className="flex w-full h-full mt-5 row-end-auto">
-                      <div className="text-lg font-thin" onClick={() => window.open(info?.url)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" className="fill-current text-white cursor-pointer">
+                      <div className="text-lg font-thin " onClick={() => window.open(info?.url)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24" className="fill-current text-red-400 cursor-pointer">
                           <path d="M 5 3 C 3.9069372 3 3 3.9069372 3 5 L 3 19 C 3 20.093063 3.9069372 21 5 21 L 19 21 C 20.093063 21 21 20.093063 21 19 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 5 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"></path>
                         </svg>
                       </div>

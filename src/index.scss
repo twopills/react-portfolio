@@ -22,3 +22,10 @@
     position: absolute;
     z-index: 0;
 }
+
+.__blur-effect{
+    background: #2020233b;
+    backdrop-filter: blur(8px);
+    width: fit-content;
+    height: fit-content;
+}
